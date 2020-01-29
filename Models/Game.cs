@@ -1,11 +1,15 @@
+using System.Collections.Generic;
+
 namespace FedUp.Models
 {
     class Game
     {
         public Airport CurrentAirport { get; set; }
+        public List<Package> Deliveries { get; set; }
+        public int AccountBalance { get; set; } = 0;
         public void Setup()
         {
-            //Create Data 
+            //Create Flights 
             Airport Boise = new Airport("Boise", "BOI");
             Airport Denver = new Airport("Denver", "DEN");
             Airport LosAngeles = new Airport("Los Angeles", "LAX");
@@ -17,7 +21,11 @@ namespace FedUp.Models
             Airport Honolulu = new Airport("Honolulu", "HNL");
             Airport Dallas = new Airport("Dallas", "DFW");
 
-            // Create Relationships
+
+            //Create Packages
+
+
+            // Create Airport Relationships
             Boise.AddDestination(Portland);
             Boise.AddDestination(Denver);
             Denver.AddDestination(LosAngeles);
@@ -36,13 +44,16 @@ namespace FedUp.Models
             NewYork.AddDestination(Miami);
             NewYork.AddDestination(Denver);
 
+            //Add packages to airports
+
+            NewYork.Pickups.Add(new Package(LosAngeles.Code, 230));
+            Phoenix.Pickups.Add(new Package(LosAngeles.Code, 130));
+            LosAngeles.Pickups.Add(new Package(NewYork.Code, 340));
+            Miami.Pickups.Add(new Package(Guadalajara.Code, 1880));
+            NewYork.Pickups.Add(new Package(Honolulu.Code, 330));
+            Boise.Pickups.Add(new Package(Miami.Code, 230));
+
             CurrentAirport = Boise;
-
-
-
-
-
-
         }
         public Game()
         {

@@ -7,7 +7,7 @@ namespace FedUp.Models
         public string Name { get; }
         public string Code { get; }
         public Dictionary<string, Airport> Destinations { get; set; }
-        //list of packages
+        public List<Package> Pickups { get; set; }
 
         //Method for adding airports
         public void AddDestination(Airport des)
@@ -22,6 +22,7 @@ namespace FedUp.Models
             Name = name;
             Code = code;
             Destinations = new Dictionary<string, Airport>();
+            Pickups = new List<Package>();
         }
     }
 }
