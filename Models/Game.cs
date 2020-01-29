@@ -2,6 +2,7 @@ namespace FedUp.Models
 {
     class Game
     {
+        public Airport CurrentAirport { get; set; }
         public void Setup()
         {
             //Create Data 
@@ -17,8 +18,35 @@ namespace FedUp.Models
             Airport Dallas = new Airport("Dallas", "DFW");
 
             // Create Relationships
+            Boise.AddDestination(Portland);
+            Boise.AddDestination(Denver);
+            Denver.AddDestination(LosAngeles);
+            Denver.AddDestination(Phoenix);
+            Denver.AddDestination(Portland);
+            Denver.AddDestination(Miami);
+            LosAngeles.AddDestination(Honolulu);
+            LosAngeles.AddDestination(Dallas);
+            LosAngeles.AddDestination(NewYork);
+            LosAngeles.AddDestination(Phoenix);
+            LosAngeles.AddDestination(Portland);
+            Phoenix.AddDestination(Guadalajara);
+            Phoenix.AddDestination(Dallas);
+            Phoenix.AddDestination(Miami);
+            NewYork.AddDestination(Dallas);
+            NewYork.AddDestination(Miami);
+            NewYork.AddDestination(Denver);
 
-            Boise.Destinations.Add(Denver.Code, Denver);
+            CurrentAirport = Boise;
+
+
+
+
+
+
+        }
+        public Game()
+        {
+            Setup();
         }
     }
 }
