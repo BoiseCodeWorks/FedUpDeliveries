@@ -1,4 +1,5 @@
 using System;
+using FedUp.Models;
 using FedUp.Services;
 
 namespace FedUp.Controllers
@@ -30,6 +31,13 @@ namespace FedUp.Controllers
                 case "EXIT":
                     _flying = false;
                     break;
+                case "CARGO":
+                    Service.PrintCargo();
+                    PrintMessages();
+                    Console.ReadKey();
+                    Console.Clear();
+                    Service.PrintMenu();
+                    break;
                 default:
                     Service.Travel(input);
                     Service.PrintMenu();
@@ -39,9 +47,9 @@ namespace FedUp.Controllers
         }
         public void PrintMessages()
         {
-            foreach (string message in Service.Messages)
+            foreach (Message message in Service.Messages)
             {
-                System.Console.WriteLine(message);
+                message.Print();
             }
             Service.Messages.Clear();
         }
