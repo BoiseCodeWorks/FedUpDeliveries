@@ -1,4 +1,5 @@
 ﻿using System;
+using FedUp.Controllers;
 
 namespace FedUp
 {
@@ -6,7 +7,9 @@ namespace FedUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Clear();
+            GameController gc = new GameController();
+            gc.Run();
         }
     }
 }
