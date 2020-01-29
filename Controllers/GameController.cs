@@ -31,7 +31,7 @@ namespace FedUp.Controllers
                     _flying = false;
                     break;
                 default:
-                    System.Console.WriteLine("Invalid input");
+                    Service.Travel(input);
                     Service.PrintMenu();
                     break;
             }
@@ -39,7 +39,11 @@ namespace FedUp.Controllers
         }
         public void PrintMessages()
         {
-
+            foreach (string message in Service.Messages)
+            {
+                System.Console.WriteLine(message);
+            }
+            Service.Messages.Clear();
         }
     }
 }

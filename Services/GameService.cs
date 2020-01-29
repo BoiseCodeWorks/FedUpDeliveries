@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FedUp.Models;
 
@@ -17,6 +18,16 @@ namespace FedUp.Services
                 Messages.Add($"{des.Key} -- {des.Value.Name}");
             }
             Messages.Add("Where to go?");
+        }
+
+        internal void Travel(string input)
+        {
+            if (Game.CurrentAirport.Destinations.ContainsKey(input))
+            {
+                Game.CurrentAirport = Game.CurrentAirport.Destinations[input];
+                return;
+            }
+            Messages.Add("Invalid Input");
         }
     }
 }
