@@ -12,6 +12,7 @@ namespace FedUp.Services
 
         public void PrintMenu()
         {
+            Messages.Add($"Balance: ${Game.AccountBalance}");
             Messages.Add($"Welcome to {Game.CurrentAirport.Name}\n");
             Messages.Add("Destinations:");
             foreach (var des in Game.CurrentAirport.Destinations)
@@ -31,6 +32,8 @@ namespace FedUp.Services
                 Timing(3);
 
                 Console.Clear();
+                Deliver();
+                Pickup();
 
                 Game.CurrentAirport = Game.CurrentAirport.Destinations[input];
                 return;
@@ -43,11 +46,32 @@ namespace FedUp.Services
         {
             //check if any packages belong to the current airport 
             //remove them
-            //collect pay
+            var total = 0;
+            var delivered = Game.Deliveries.RemoveAll(p =>
+            {
+                if (p.DestinationCode == Game.CurrentAirport.Code)
+                {
+                    //collect pay
+                    total += p.Value;
+                    return true;
+                }
+                return false;
+            });
+
+            Messages.Add($"Delivered {delivered} packages.");
+            Game.AccountBalance += total;
         }
 
         private void Pickup()
         {
+            if (Game.CurrentAirport.Pickups.Count == 0)
+            {
+                Messages.Add("No packages at this location.");
+                return;
+            }
+            Messages.Add($"Picking up {Game.CurrentAirport.Pickups.Count} packages.");
+            Game.Deliveries.AddRange(Game.CurrentAirport.Pickups);
+            Game.CurrentAirport.Pickups.Clear();
             //check if current airport has pickups
             // transfer them into the game.deliveries
         }

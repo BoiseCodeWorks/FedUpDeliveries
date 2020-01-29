@@ -5,7 +5,7 @@ namespace FedUp.Models
     class Game
     {
         public Airport CurrentAirport { get; set; }
-        public List<Package> Deliveries { get; set; }
+        public List<Package> Deliveries { get; set; } = new List<Package>();
         public int AccountBalance { get; set; } = 0;
         public void Setup()
         {
