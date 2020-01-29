@@ -23,6 +23,7 @@ namespace FedUp.Models
             {
                 System.Console.WriteLine("Press any key to Continue");
                 Console.ReadKey();
+                Console.Clear();
             }
             Console.ForegroundColor = defaultColor;
         }
@@ -48,6 +49,12 @@ namespace FedUp.Models
             Body = body;
             Color = color;
             PostTimeout = timeout;
+        }
+        public Message(string body, ConsoleColor color, bool readkeyWait)
+        {
+            Color = color;
+            Body = body;
+            ReadKeyWait = readkeyWait;
         }
         public Message(string body, ConsoleColor color, int timeout, bool readkeyWait)
         {
