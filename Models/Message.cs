@@ -42,6 +42,7 @@ namespace FedUp.Models
         public Message(string body, int timeout)
         {
             Body = body;
+            Color = Console.ForegroundColor;
             PostTimeout = timeout;
         }
         public Message(string body, ConsoleColor color, int timeout)
